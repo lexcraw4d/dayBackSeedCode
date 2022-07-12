@@ -16,12 +16,12 @@ const cancelButtonText = "No";
 const confirmButtonText = "Yes";
 
 //timezones currently used (you can customize these to meet your personal/business/teams needs)
-
+//future enhancements if multiple timezones 
 let personalTimezones = {
   eastern: "America/New_York",
   est:"America/New_York",
   central: "America/Chicago",
-  central: "America/Chicago",
+  cst: "America/Chicago",
   mountain: "America/Denver",
   mdt: "America/Denver",
  'los angeles': "America/Los_Angeles",
