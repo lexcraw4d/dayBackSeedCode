@@ -37,7 +37,7 @@ if (data) {
     let tagName = data[i].name;
     //convert to lowercase and reassign tagName 
     tagName = tagName.toLowerCase()
-    //future enhancements could be to add switch case e.g.
+    //future enhancements could be to add a switch case statement if eastern || est : Eastern
     getTimeZone(tagName);
   }
 }
