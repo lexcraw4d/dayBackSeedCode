@@ -7,17 +7,17 @@
 // https://docs.dayback.com/article/140-custom-app-actions
 
 //here we declare initial variables
-let config = seedcodeCalendar.get("config");
-let initialItem = params.data.item;
-let isSelected = initialItem.status.selected;
-let data = params.data.item.tags;
+
+var initialItem = params.data.item;
+var isSelected = initialItem.status.selected;
+var data = params.data.item.tags;
 const title = "* Time Zone Confirmation *";
 const cancelButtonText = "No";
 const confirmButtonText = "Yes";
 
 //timezones currently used (you can customize these to meet your personal/business/teams needs)
 //future enhancements if multiple timezones 
-let personalTimezones = {
+var personalTimezones = {
   eastern: "America/New_York",
   est:"America/New_York",
   central: "America/Chicago",
@@ -31,25 +31,21 @@ let personalTimezones = {
   pacific: "Pacific/Honolulu",
   pst:"Pacific/Honolulu"
 };
-
+var taggedArr = [];
 if (data) {
   for (let i = 0; i < data.length; i++) {
     let tagName = data[i].name;
     //convert to lowercase and reassign tagName 
     tagName = tagName.toLowerCase()
+    taggedArr.push(tagName)
     //future enhancements could be to add a switch case statement if eastern || est : Eastern
-    getTimeZone(tagName);
+    //as well as if multiple timezones selected pushing to diff arrays and prompting based on that
   }
-}
-
-
-function getTimeZone(tagName) {
-    //here we pass in tag name to the modal for template literal usage and also to our confirm function based on user response to modal
-    if (isSelected === true) {
-      let timeZone = personalTimezones[tagName];
-      confirmFunction(timeZone)
-      showModal(timeZone);
-    }
+  if (isSelected === true) {
+   let tagArrName = taggedArr[0]
+    var timeZone = personalTimezones[tagArrName];
+    showModal(timeZone);
+  }
 }
 
 //Personalized DayBack Calendar based on filtering by tag names 
@@ -59,12 +55,13 @@ function showModal(timeZone) {
     title,
     message,
     cancelButtonText,
-    confirmFunction,
+    null,
     confirmButtonText,
-    null
+    confirmFunction
   );
 }
-function confirmFunction(timeZone) {
-    config.clientTimezone = timeZone
-     seedcodeCalendar.init("initCalendar");
+function confirmFunction() {
+    var config = seedcodeCalendar.get("config");
+    config.clientTimezone = timeZone;
+    seedcodeCalendar.init("initCalendar");
   }
