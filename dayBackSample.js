@@ -37,6 +37,7 @@ if (data) {
     let tagName = data[i].name;
     //convert to lowercase and reassign tagName 
     tagName = tagName.toLowerCase()
+    //add tags to tag Array
     taggedArr.push(tagName)
     //future enhancements could be to add a switch case statement if eastern || est : Eastern
     //as well as if multiple timezones selected pushing to diff arrays and prompting based on that
